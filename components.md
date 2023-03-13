@@ -20,9 +20,9 @@ System_Ext(web_site, "Клиентский веб-сайт", "HTML, CSS, JavaScr
 System_Boundary(conference_site, "Сайт конференции") {
    'Container(web_site, "Клиентский веб-сайт", ")
    Container(client_service, "Сервис авторизации", "C++", "Сервис управления пользователями", $tags = "microService")    
-   Container(post_service, "Сервис постов", "C++", "Сервис управления блогами", $tags = "microService") 
-   Container(blog_service, "Сервис блогов", "C++", "Сервис управления постами", $tags = "microService")   
-   ContainerDb(db, "База данных", "MySQL", "Хранение данных о блогах, постах и пользователях", $tags = "storage")
+   Container(post_service, "Сервис конференций", "C++", "Сервис управления конференциями", $tags = "microService") 
+   Container(blog_service, "Сервис докладов", "C++", "Сервис управления докладами", $tags = "microService")   
+   ContainerDb(db, "База данных", "MySQL", "Хранение данных о конференциях, докладах и пользователях", $tags = "storage")
    
 }
 
@@ -33,10 +33,10 @@ Rel(user, web_site, "Создание доклада и получение сп�
 Rel(web_site, client_service, "Работа с пользователями", "localhost/person")
 Rel(client_service, db, "INSERT/SELECT", "SQL")
 
-Rel(web_site, post_service, "Работа с конференциями", "localhost/conferention")
+Rel(client_service, post_service, "Работа с конференциями", "localhost/conferention")
 Rel(post_service, db, "INSERT/SELECT/GET", "SQL")
 
-Rel(web_site, blog_service, "Работа с докладами", "localhost/presentation")
+Rel(client_service, blog_service, "Работа с докладами", "localhost/presentation")
 Rel(blog_service, db, "INSERT/SELECT", "SQL")
 
 @enduml
